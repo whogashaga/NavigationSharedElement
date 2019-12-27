@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (C) 2017 The Android Open Source Project
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~      http://www.apache.org/licenses/LICENSE-2.0
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            app:startDestination="@+id/launcher_home">
+    <fragment
+        android:id="@+id/launcher_home"
+        android:name="com.example.android.codelabs.navigation.MainFragment"
+        android:label="@string/home"
+        tools:layout="@layout/fragment_main">
+
+        <action
+            android:id="@+id/next_action_recyclerview"
+            app:destination="@+id/recyclerview_fragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+
+        <action
+            android:id="@+id/next_action_shared_element"
+            app:destination="@+id/fragment_shared_element"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/android"
+        android:name="com.example.android.codelabs.navigation.DeepLinkFragment"
+        android:label="@string/deeplink"
+        tools:layout="@layout/fragment_deeplink">
+
+        <argument
+            android:name="myarg"
+            android:defaultValue="Android!"/>
+        <deepLink app:uri="www.example.com/{myarg}" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragment_shared_element"
+        android:name="com.example.android.codelabs.navigation.SharedElementFragment"
+        android:label="fragment_shared_element"
+        tools:layout="@layout/fragment_shared_element">
+
+        <action
+            android:id="@+id/next_action"
+            app:destination="@+id/fragment_shared_element_details">
+        </action>
+    </fragment>
+    <fragment
+        android:id="@+id/fragment_shared_element_details"
+        android:name="com.example.android.codelabs.navigation.SharedElementDetailsFragment"
+        android:label="fragment_shared_element_details"
+        tools:layout="@layout/fragment_shared_elements_details"/>
+    <fragment
+        android:id="@+id/recyclerview_fragment"
+        android:name="com.example.android.codelabs.navigation.recycler_view.RecyclerViewSharedElementsFragment"
+        android:label="recyclerview_fragment"
+        tools:layout="@layout/fragment_recycler_view_shared_elements">
+
+        <action
+            android:id="@+id/next_action"
+            app:destination="@+id/animal_details_fragment">
+        </action>
+    </fragment>
+    <fragment
+        android:id="@+id/animal_details_fragment"
+        android:name="com.example.android.codelabs.navigation.recycler_view.RecyclerViewSharedElementsDetailFragment"
+        android:label="animal_details_fragment"
+        tools:layout="@layout/fragment_recycler_view_shared_elements_detail">
+        <argument
+            android:name="animal_item"
+            app:argType="reference" />
+        <argument
+            android:name="transition_name"
+            app:argType="string"
+            android:defaultValue='\0'/>
+    </fragment>
+</navigation>
