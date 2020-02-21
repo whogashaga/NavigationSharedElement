@@ -36,7 +36,9 @@ class AnimalGalleryAdapter(private val animalItems: ArrayList<AnimalItem>, priva
 
         ViewCompat.setTransitionName(holder.animalImageView, animalItem.name)
 
-        holder.itemView.setOnClickListener { animalItemClickListener.onAnimalItemClick(holder.adapterPosition, animalItem, holder.animalImageView) }
+        holder.itemView.setOnClickListener {
+            animalItemClickListener.onAnimalItemClick(holder.adapterPosition, animalItem, holder.animalImageView)
+        }
     }
 
     class ImageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
